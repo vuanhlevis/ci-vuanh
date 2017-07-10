@@ -54,29 +54,47 @@ public class Home_Game extends JFrame {
                 {
                     case KeyEvent.VK_RIGHT:
 
-                        if ( (PlayerX + 17) >= background.getWidth())
+                        if ( (PlayerX + 5) >= background.getWidth() - player.getWidth())
+                        {
+                            checkR = true;
                             break;
-                        else PlayerX+=5;
+
+                        }
+//                        else PlayerX+=5;
+                        checkR = true;
+
                         break;
 
                     case KeyEvent.VK_LEFT:
                         if (PlayerX - 5 <=0)
+                        {
+                            checkL = true;
                             break;
-                        else PlayerX-=5;
+                        }
+//                        else PlayerX-=5;
+                        checkL = true;
                         break;
 
 //                        System.out.println(background.getWidth());
 //                        System.out.println(PlayerX);
                     case KeyEvent.VK_UP:
                         if (PlayerY - 20 <=0)
+                        {
+                            checkU = true;
                             break;
-                        else PlayerY-=5;
+                        }
+//                        else PlayerY-=5;
+                        checkU = true;
                         break;
 
                     case KeyEvent.VK_DOWN:
                         if (PlayerY + 5 >= temp )
+                        {
+                            checkD = true;
                             break;
-                        else PlayerY +=5;
+                        }
+//                        else PlayerY +=5;
+                        checkD = true;
                         break;
 
 
@@ -91,7 +109,19 @@ public class Home_Game extends JFrame {
                 switch (e.getKeyCode())
                 {
                     case KeyEvent.VK_RIGHT:
-
+                        checkR = false;
+                        break;
+                    case KeyEvent.VK_LEFT:
+                        checkL = false;
+                        break;
+                    case KeyEvent.VK_UP:
+                        checkU = false;
+                        break;
+                    case KeyEvent.VK_DOWN:
+                        checkD = false;
+                        break;
+                    default:
+                            break;
                 }
 
             }
@@ -112,14 +142,40 @@ public class Home_Game extends JFrame {
                 backBufferGraphics2D.drawImage(background,0,this.getHeight()-bgHeigh,null);
                 backBufferGraphics2D.drawImage(player,PlayerX,PlayerY,null);
 
-                if(tmp)
+                if (tmp)
                 {
-                    bgHeigh-=5;
+                    // chay background
+                    bgHeigh-=1;
 
                     if (bgHeigh <= this.getHeight())
                         tmp = false;
                 }
 
+
+
+                // di chuyen 8 huong
+                if (checkD )
+                {
+                    if (PlayerY + 3 < this.getHeight() - player.getHeight())
+                        PlayerY+=3;
+
+                }else if (checkU)
+                {
+                    if (PlayerY >0)
+                        PlayerY-=3;
+                }
+
+                if (checkL)
+                {
+                    if (PlayerX > 0)
+                        PlayerX-=3;
+                }else if (checkR)
+                {
+                    if (PlayerX <= background.getWidth() - player.getWidth())
+                        PlayerX+=3;
+                }
+
+                // draw
                 Graphics2D g2d = (Graphics2D) this.getGraphics();
                 g2d.drawImage(backBufferImage,0,0,null);
             } catch (InterruptedException e) {
