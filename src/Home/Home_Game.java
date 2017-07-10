@@ -54,46 +54,25 @@ public class Home_Game extends JFrame {
                 {
                     case KeyEvent.VK_RIGHT:
 
-                        if ( (PlayerX + 5) >= background.getWidth() - player.getWidth())
-                        {
-                            checkR = true;
-                            break;
-
-                        }
-//                        else PlayerX+=5;
+                        
                         checkR = true;
 
                         break;
 
                     case KeyEvent.VK_LEFT:
-                        if (PlayerX - 5 <=0)
-                        {
-                            checkL = true;
-                            break;
-                        }
-//                        else PlayerX-=5;
+
                         checkL = true;
                         break;
 
 //                        System.out.println(background.getWidth());
 //                        System.out.println(PlayerX);
                     case KeyEvent.VK_UP:
-                        if (PlayerY - 20 <=0)
-                        {
-                            checkU = true;
-                            break;
-                        }
-//                        else PlayerY-=5;
+
                         checkU = true;
                         break;
 
                     case KeyEvent.VK_DOWN:
-                        if (PlayerY + 5 >= temp )
-                        {
-                            checkD = true;
-                            break;
-                        }
-//                        else PlayerY +=5;
+
                         checkD = true;
                         break;
 
