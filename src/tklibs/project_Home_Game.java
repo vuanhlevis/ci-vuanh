@@ -1,6 +1,6 @@
 package tklibs;
 
-import Home.Home_Game;
+import home.Home_Game;
 
 /**
  * Created by VALV on 7/10/2017.

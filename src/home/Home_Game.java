@@ -1,4 +1,4 @@
-package Home;
+package home;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -54,7 +54,7 @@ public class Home_Game extends JFrame {
                 {
                     case KeyEvent.VK_RIGHT:
 
-                        
+
                         checkR = true;
 
                         break;
@@ -140,13 +140,13 @@ public class Home_Game extends JFrame {
 
                 }else if (checkU)
                 {
-                    if (PlayerY >0)
+                    if (PlayerY - 10 >0)
                         PlayerY-=3;
                 }
 
                 if (checkL)
                 {
-                    if (PlayerX > 0)
+                    if (PlayerX - 3 > 0)
                         PlayerX-=3;
                 }else if (checkR)
                 {
