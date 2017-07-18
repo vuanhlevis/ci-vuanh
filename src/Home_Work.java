@@ -1,11 +1,11 @@
 import home.Home_Game;
 
 /**
- * Created by VALV on 7/12/2017.
+ * Created by VALV on 7/18/2017.
  */
-public class home_game {
+public class Home_Work {
     public static void main(String[] args) {
         Home_Game home_game = new Home_Game();
-        home_game.Loop();
+        home_game.loop();
     }
 }
