@@ -1,6 +1,4 @@
-package game.player;
-
-import java.util.Vector;
+package game.bases;
 
 /**
  * Created by VALV on 7/16/2017.
@@ -9,52 +7,73 @@ public class Vector2D {
     public float x;
     public float y;
 
-    public void addUp(Vector2D b)
+    public Vector2D (float x, float y)
     {
-        x+= b.x;
-        y+= b.y;
+        this.x = x;
+        this.y = y;
     }
-    public Vector2D add(Vector2D b)
+
+    public Vector2D()
     {
-        Vector2D c = new Vector2D();
-        c.x = b.x + x;
-        c.y = b.y + y;
-        return c;
+        this(0,0);
     }
+
+    public void addUp(float x, float y)
+    {
+        this.x += x;
+        this.y += y;
+    }
+
+    public void addUp(Vector2D other)
+    {
+        addUp(other.x, other.y);
+    }
+
+    public Vector2D add(float x, float y)
+    {
+        return new Vector2D(this.x + x, this.y + y);
+    }
+
+    public Vector2D add(Vector2D other)
+    {
+        return add(other.x,other.y);
+    }
+
+    public void set (float x, float y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+    public void set(Vector2D other)
+    {
+        set(other.x,other.y);
+    }
+
+
     public Vector2D multiply(int a)
     {
-        Vector2D c = new Vector2D();
-        c.x = x*a;
-        c.y = y*a;
+        Vector2D c = new Vector2D(x*a,y*a);
         return c;
     }
     public Vector2D normallize()
     {
-        Vector2D a = new Vector2D();
-        a.x = (float) (x / Math.sqrt(x*x + y*y));
-        a.y = (float) (y / Math.sqrt(x*x + y*y));
+        Vector2D a = new Vector2D((float) (x / Math.sqrt(x*x + y*y)),(float) (y / Math.sqrt(x*x + y*y)));
         return a;
     }
 
     public Vector2D clone()
     {
-        Vector2D c = new Vector2D();
-        c.x = x;
-        c.y = y;
+        Vector2D c = new Vector2D(x,y);
         return c;
     }
     public Vector2D invert()
     {
-        Vector2D a = new Vector2D();
-        a.x = - x;
-        a.y = - y;
+        Vector2D a = new Vector2D(-x, -y);
         return a;
     }
     public Vector2D Substract(Vector2D b)
     {
-        Vector2D c = new Vector2D();
-        c.x = x - b.x;
-        c.y = y - b.y;
+        Vector2D c = new Vector2D(x - b.x, y - b.y);
         return c;
     }
 

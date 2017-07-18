@@ -11,25 +11,22 @@ import java.awt.image.BufferedImage;
 /**
  * Created by VALV on 7/11/2017.
  */
-public class Player_Spell {
+public class PlayerSpell {
     //properties : thuoc tinh
     public Vector2D position;
+
     public ImageRenderer imageRenderer;
 
-    public Player_Spell()
-    {
-        position = new Vector2D();
-        imageRenderer = new ImageRenderer(Utils.loadAssetImage("player-spell/a/1.png"));
+    public PlayerSpell(){
+        this.position = new Vector2D();
+        this.imageRenderer = new ImageRenderer(Utils.loadAssetImage("player-spell/a/0.png"));
     }
 
-    //method: phuong thuc
-    public void Move()
-    {
-        this.position.addUp(0,-10);
+    public void move(){
+        this.position.addUp(0, -10);
     }
 
-    public void Render(Graphics2D g2d)
-    {
-        imageRenderer.render(g2d,position);
+    public void render(Graphics2D g2d){
+        imageRenderer.render(g2d, this.position);
     }
 }
