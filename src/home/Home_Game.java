@@ -177,12 +177,14 @@ public class Home_Game extends JFrame{
         enemy.coolDown();
         for (Enemy enemy1 : enemies) {
             enemy1.move(0,5);
+            enemy1.castSpell(enemySpells);
+            enemy1.coolDownSpell();
         }
 //        enemy2.castSpell(enemySpells);
 //        enemy2.coolDownSpell();
-//        for (EnemySpell enemySpell : enemySpells) {
-//            enemySpell.move();
-//        }
+        for (EnemySpell enemySpell : enemySpells) {
+            enemySpell.move();
+        }
 
 
 //        System.out.println(backGroudY);

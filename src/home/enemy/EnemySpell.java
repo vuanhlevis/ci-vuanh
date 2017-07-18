@@ -44,7 +44,7 @@ public class EnemySpell {
     public void move() {
         Random random = new Random();
         float tmp = (float) (random.nextFloat() * 1 + 0.5);
-        this.position.addUp(0,5);
+        this.position.addUp(0,15);
     }
 
     public void render (Graphics2D g) {
