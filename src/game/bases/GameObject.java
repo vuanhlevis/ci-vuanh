@@ -1,5 +1,9 @@
 package game.bases;
 
+import game.bases.physics.Physics;
+import game.bases.physics.PhysicsBody;
+import game.bases.renderers.Renderer;
+
 import java.awt.*;
 import java.util.Vector;
 
@@ -9,40 +13,39 @@ import java.util.Vector;
 public class GameObject {
     public Vector2D position; // relative
     public Vector2D screenPosition; // screen
+    public boolean isActive;
 
-    public ImageRenderer renderer;
+    public Renderer renderer;
 
     public Vector<GameObject> children;
-
     private static Vector<GameObject> gameObjects = new Vector<>();
-
     private static Vector<GameObject> newgameObjects = new Vector<>();
 
     public static void add(GameObject gameObject) {
         newgameObjects.add(gameObject);
+        if (gameObject instanceof PhysicsBody) {
+            Physics.add((PhysicsBody) gameObject);
+        }
     }
+
 
     public static void renderAll(Graphics2D graphics2D) {
         for (GameObject gameObject : gameObjects) {
-            gameObject.render(graphics2D);
+            if (gameObject.isActive)
+                gameObject.render(graphics2D);
         }
     }
 
     public static void runAll() {
         for (GameObject gameObject : gameObjects) {
-            gameObject.run(Vector2D.ZERO);
+            if (gameObject.isActive) {
+                gameObject.run(Vector2D.ZERO);
+            }
         }
         gameObjects.addAll(newgameObjects);
         newgameObjects.clear();
+        System.out.println(gameObjects.size());
 
-        // kiem tra doi mot
-//        for (int i = 0; i < gameObjects.size() - 1; i++) {
-//            for (int j = i + 1; j < gameObjects.size(); j++) {
-//                GameObject gi = gameObjects.get(i);
-//                GameObject gj = gameObjects.get(j);
-//
-//            }
-//        }
     }
 
     public void render(Graphics2D g2d) {
@@ -56,6 +59,11 @@ public class GameObject {
         this.screenPosition = new Vector2D();
         this.children = new Vector<>();
         this.renderer = null;
+        this.isActive = true;
+    }
+
+    public boolean isActive() {
+        return isActive;
     }
 
     public void run(Vector2D parentPosition) {
@@ -64,5 +72,9 @@ public class GameObject {
         for (GameObject child : children) {
             child.run(this.screenPosition);
         }
+    }
+
+    public void setActive(boolean active) {
+        this.isActive = active;
     }
 }

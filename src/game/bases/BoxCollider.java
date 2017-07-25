@@ -20,16 +20,16 @@ public class BoxCollider extends GameObject {
     }
 
     public float left() {
-        return this.position.x - width / 2;
+        return this.screenPosition.x - width / 2;
     }
     public float right() {
-        return this.position.x + width / 2;
+        return this.screenPosition.x + width / 2;
     }
     public float top() {
-        return this.position.y - height / 2;
+        return this.screenPosition.y - height / 2;
     }
     public float bottom() {
-        return this.position.y + height / 2;
+        return this.screenPosition.y + height / 2;
     }
 
     public boolean coolidewith(BoxCollider other) {

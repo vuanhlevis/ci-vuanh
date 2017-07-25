@@ -2,17 +2,14 @@ package game.player;
 
 import game.Utils;
 import game.bases.*;
+import game.bases.renderers.ImageRenderer;
 import game.inputs.InputManager;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 /**
  * Created by VALV on 7/11/2017.
  */
 //
-public class Player extends GameObject{
+public class Player extends GameObject {
 
     Contraints contraints;
     InputManager inputManager;
@@ -24,9 +21,9 @@ public class Player extends GameObject{
 
     public static Player instance;
 
-    public Player(){
+    public Player() {
         this.velocity = new Vector2D();
-        this.coolDownCounter = new FrameCounter(10);  // 17 frame  = 300 millisecond
+        this.coolDownCounter = new FrameCounter(2);  // 17 frame  = 300 millisecond
         this.renderer = new ImageRenderer(Utils.loadAssetImage("players/straight/0.png"));
         instance = this;
     }
@@ -36,20 +33,17 @@ public class Player extends GameObject{
         super.run(parentPosition);
 
         move();
-
         castSpell();
     }
 
     private void castSpell() {
         if (!spellDisabled) {
             if (inputManager.xPress) {
-                PlayerSpell playerSpell = new PlayerSpell();
+                PlayerSpell playerSpell = GameObjectPool.recycle(PlayerSpell.class);
                 playerSpell.position.set(this.position.add(0, -20));
-                GameObject.add(playerSpell);
             }
             spellDisabled = true;
         }
-
         coolDown();
     }
 
@@ -77,11 +71,11 @@ public class Player extends GameObject{
         }
     }
 
-    public void setContraints(Contraints contraints){
+    public void setContraints(Contraints contraints) {
         this.contraints = contraints;
     }
 
-    public void setInputManager(InputManager inputManager){
+    public void setInputManager(InputManager inputManager) {
         this.inputManager = inputManager;
     }
 }
