@@ -26,5 +26,4 @@ public class EnemyBullet extends GameObject {
 
     }
 
-
 }

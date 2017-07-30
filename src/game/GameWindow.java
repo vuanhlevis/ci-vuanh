@@ -26,16 +26,17 @@ import static sun.misc.PostVMInitHook.run;
 /**
  * Created by VALV on 7/9/2017.
  */
-public class GameWindow extends JFrame{
+public class GameWindow extends JFrame {
 
-    BackGround  backGroud = new BackGround();
+    BackGround backGroud = new BackGround();
 
     private BufferedImage backBufferImage;
 
     private Graphics2D backBufferGraphic2D;
 
     InputManager inputManager = new InputManager();
-    public GameWindow(){
+
+    public GameWindow() {
 
         setUpWindow();
 //        loadImage();
@@ -44,7 +45,7 @@ public class GameWindow extends JFrame{
 
         addEnemySpawner();
 
-        backBufferImage = new BufferedImage(this.getWidth(),this.getHeight(), BufferedImage.TYPE_INT_ARGB);
+        backBufferImage = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_ARGB);
         backBufferGraphic2D = (Graphics2D) backBufferImage.getGraphics();
 
         setupInput();
@@ -59,14 +60,14 @@ public class GameWindow extends JFrame{
 
     private void addEnemySpawner() {
         Enemy enemy = new Enemy();
-        enemy.position.set(backGroud.getWidth()/2, 0);
+        enemy.position.set(backGroud.getWidth() / 2, 0);
         GameObject.add(enemy);
 
     }
 
     private void addPlayer() {
         Player player = new Player();
-        player.setContraints(new Contraints(20,this.getHeight(),0,backGroud.getWidth()));
+        player.setContraints(new Contraints(20, this.getHeight(), 0, backGroud.getWidth()));
         player.position.set(backGroud.getWidth() / 2, this.getHeight() - 50);
         player.setInputManager(inputManager);
         GameObject.add(player);
@@ -93,33 +94,31 @@ public class GameWindow extends JFrame{
 
     long lastUpdateTime;
 
-    public void loop(){
-        while (true){
+    public void loop() {
+        while (true) {
 
-            long  currentTime = System.currentTimeMillis();
+            long currentTime = System.currentTimeMillis();
 
-            if (currentTime - lastUpdateTime > 17){
+            if (currentTime - lastUpdateTime > 17) {
                 lastUpdateTime = currentTime;
                 render();
                 run();
             }
-
-
         }
     }
 
-    private void run(){
+    private void run() {
         GameObject.runAll();
     }
 
     private void render() {
         backBufferGraphic2D.setColor(Color.BLACK);
-        backBufferGraphic2D.fillRect(0,0,this.getWidth(),this.getHeight());
+        backBufferGraphic2D.fillRect(0, 0, this.getWidth(), this.getHeight());
 
         GameObject.renderAll(backBufferGraphic2D);
 
-        Graphics2D g2d = (Graphics2D)this.getGraphics();
-        g2d.drawImage(backBufferImage,0,0,null);
+        Graphics2D g2d = (Graphics2D) this.getGraphics();
+        g2d.drawImage(backBufferImage, 0, 0, null);
     }
 
     private void setUpWindow() {

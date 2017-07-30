@@ -10,7 +10,6 @@ public class project_Game {
 
         GameWindow gameWindow = new GameWindow();
         gameWindow.loop();
-
     }
 
 }

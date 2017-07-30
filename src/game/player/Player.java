@@ -22,6 +22,7 @@ public class Player extends GameObject {
     public static Player instance;
 
     public Player() {
+        super();
         this.velocity = new Vector2D();
         this.coolDownCounter = new FrameCounter(2);  // 17 frame  = 300 millisecond
         this.renderer = new ImageRenderer(Utils.loadAssetImage("players/straight/0.png"));

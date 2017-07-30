@@ -48,6 +48,7 @@ public class Enemy extends GameObject implements PhysicsBody {
 //        enemyBullet.velocity.set(0,4);
         enemyBullet.velocity.set(bulletVelocity);
         enemyBullet.position.set(this.position);
+        System.out.println(target);
 
     }
 
